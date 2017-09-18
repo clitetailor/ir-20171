@@ -10,14 +10,14 @@ module.exports = function (site) {
 		let $ = cheerio.load(siteContent);
 
 		let title = site.titleSelector ? $(site.titleSelector).first().text() : $('title').first().text();
-		let content = $(site.contentSelector).toArray()
+		let content = $(site.contentSelector || 'body').toArray()
 			.map(paragraph => {
 				return $(paragraph).text();
 			})
 			.reduce((accumulate, paragraph) => {
 				return accumulate.concat(paragraph);
 			}, '');
-		
+
 		let siteData = {
 			url: site.url,
 			title: title,

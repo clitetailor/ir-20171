@@ -19,6 +19,7 @@ module.exports = function (inputFile, options) {
 		.map(line =>
 			line.split(/,/)
 				.map(cell => cell.trim()))
+		.filter(line => !!line[0] && !!line[1])
 		.map(line => {
 			return {
 				url: line[0],
